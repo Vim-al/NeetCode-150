@@ -1,0 +1,24 @@
+o(n), o(n)
+
+brute force would be to sort both the strings and compare it with each other o(nlog(n)),o(1)
+
+hashmap to track the first string character count and then cross check it with the second string
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length()){
+            return false;
+        }
+        unordered_map<char, int> track;
+        for(int i = 0; i < s.length(); i++){
+            track[s[i]]++;
+        }
+        for(int i = 0; i < t.length(); i++){
+            if(track[t[i]] <= 0)
+                return false;
+            track[t[i]]--;
+        }
+        return true;
+    }
+};

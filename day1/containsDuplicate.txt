@@ -1,0 +1,19 @@
+o(n), o(n)
+
+brute force would be to iterate on each element and check if it is there anywhere in the array again o(n^2), o(1)
+
+optimized would be to use a hashset or hashmap to track the count and cross check in the same loop o(n), o(n)
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int, int> count;
+        for(auto it: nums){
+            if(count[it] > 0)
+                return true;
+            count[it]++;
+        }
+        return false;
+    }
+};
+
