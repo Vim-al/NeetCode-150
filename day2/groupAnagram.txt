@@ -1,0 +1,34 @@
+o(m*n), o(n)
+
+brute force would be to sort the strings and then group them using hashmap but the time complexity is o(m*nlogn), o(n)
+
+anagrams can be checked just by the count of occurrences of each character 
+optimized would be to use a 26 size array to count the occurrences of character in each string and convert the array to a string and use it as the key of hashmaps
+we need to convert it into string because we cant have a complex data structure as the key of hashmap.
+
+Look at code for easy understanding
+## Remember how the key is being converted from array[26]
+
+vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    vector<vector<string>> ans;
+    unordered_map<string, vector<string>> temp;
+
+    for(auto str: strs){
+        int a[26] = {0};
+        for(auto c: str){
+            a[c - 'a']++;
+        }
+        string key;
+        for(int i = 0; i < 26; i++){
+            key += to_string(a[i]) + "#";
+        }
+        cout << str << " " << key << endl;
+        temp[key].push_back(str);
+    }
+    
+    for(auto it: temp){
+        ans.push_back(it.second);
+    }
+
+    return ans;
+}

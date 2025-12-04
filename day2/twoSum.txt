@@ -1,0 +1,37 @@
+o(n), o(n) => for each iteration we do average o(1) lookup using find and at worst case we use have an entire array in the unordered_map
+
+brute force would be to use two loops and find all the pairs and return the final answer o(n^2), o(1)
+
+optimized would be to use hashmap because of its faster lookup where we can find target - nums[i] in the entered unordered_map
+
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int,int> mp;
+    vector<int> ans;
+    for(int i = 0; i < nums.size(); i++){
+        if(mp.find(target - nums[i]) == mp.end()){
+            mp[nums[i]] = i;
+        }
+        else{
+            ans.push_back(i);
+            ans.push_back(mp[target - nums[i]]);
+            break;
+        }
+    }
+    return ans;
+}
+
+faster in leetcode :)
+
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int, int> mp;
+    
+    for (int i = 0; i < nums.size(); i++) {
+        int diff = target - nums[i];
+        
+        if (mp.count(diff)) {
+            return { mp[diff], i };
+        }
+        mp[nums[i]] = i;
+    }    
+    return {};
+}
