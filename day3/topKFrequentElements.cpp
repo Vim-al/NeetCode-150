@@ -1,4 +1,4 @@
-/*
+
 o(n), o(n)
 
 brute force would be to sort the elements in descending order and iterate over to find the first k unique elements
@@ -9,9 +9,7 @@ so for example [1,1,1,1,1] here the count would be 5 but if we just initialize a
 the idea is to store the elements with the indices as the frequency. So 6th index would have the elements who have 6 occurrences
 and then since the order of the answer doesnt matter we iterate from the last to get the highest frequency first
 and then insert them into a resultant array until k becomes 0
-*/
-#include<bits/stdc++.h>
-using namespace std;
+
 
 vector<int> topKFrequent(vector<int>& nums, int k) {
     unordered_map<int, int> mp;
